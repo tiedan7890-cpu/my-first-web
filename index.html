@@ -52,15 +52,18 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
             transition: all 0.2s;
+            z-index: 99;
         }
 
         .lang-btn:hover {
             border-color: var(--accent);
+            background: var(--accent);
         }
 
         .card {
@@ -178,7 +181,8 @@
 <div class="container">
     <div class="header">
         <h1 class="title" id="t-title">🚀 AI Prompt Enhancer</h1>
-        <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle">中文 / EN</button>
+        <!-- 强制绑定点击事件 -->
+        <button class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">中文 / EN</button>
     </div>
 
     <div class="card">
@@ -212,7 +216,7 @@
         </div>
     </div>
 
-    <!-- 变现挂件：已绑定 Gumroad 3D 图标包真实链接 -->
+    <!-- 变现挂件：3D 图标包直达链接 -->
     <div class="monetize-banner">
         <h3 id="t-ad-title">🚀 Need Premium 3D Tech Icons & Assets?</h3>
         <p style="color: #a5b4fc; margin-bottom: 15px;" id="t-ad-desc">Minimalist 3D Icons Clip Art Bundle for Web Projects & AI Presentations.</p>
@@ -276,4 +280,37 @@
     }
 
     function generatePrompt() {
-        const task
+        const task = document.getElementById('task-type').value;
+        const idea = document.getElementById('user-idea').value.trim();
+        const tone = document.getElementById('tone').value;
+
+        if (!idea) {
+            alert(currentLang === 'en' ? "Please enter an idea!" : "请先输入你的想法！");
+            return;
+        }
+
+        let enhanced = "";
+
+        if (task === 'writer') {
+            enhanced = `Act as an expert copywriter. I need you to create high-converting content about: "${idea}".\n\nRequirements:\n- Tone: ${tone}\n- Include a compelling headline and strong Call-to-Action (CTA).\n- Format with clear bullet points for readability.`;
+        } else if (task === 'coder') {
+            enhanced = `Act as a Senior Software Engineer. Help me build or fix the following concept: "${idea}".\n\nRequirements:\n- Write clean, modular, and well-commented code.\n- Provide step-by-step setup instructions.\n- Highlight potential bugs or edge cases.`;
+        } else if (task === 'image') {
+            enhanced = `A high-quality, ultra-detailed visual of "${idea}", rendered in 8k resolution, cinematic lighting, ${tone} aesthetic, photorealistic, trending on ArtStation --ar 16:9 --v 6.0`;
+        } else {
+            enhanced = `Act as a top-tier business strategist. Analyze and create an actionable strategy for: "${idea}".\n\nStructure:\n1. Executive Summary\n2. Key Execution Steps (Tone: ${tone})\n3. Monetization & Risk Control Checklist`;
+        }
+
+        document.getElementById('output-text').innerText = enhanced;
+    }
+
+    function copyPrompt() {
+        const text = document.getElementById('output-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert(currentLang === 'en' ? "Copied to clipboard!" : "已成功复制到剪贴板！");
+        });
+    }
+</script>
+
+</body>
+</html>

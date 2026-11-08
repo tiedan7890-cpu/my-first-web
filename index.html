@@ -1,1 +1,312 @@
-我是长羊毛的猪，欢迎来到我的网站！
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate AI Prompt Generator & Enhancer</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --border: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #a5b4fc, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-sub);
+        }
+
+        select, input, textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-main {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-main:hover {
+            background: var(--accent-hover);
+        }
+
+        .result-box {
+            position: relative;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: monospace;
+            color: #38bdf8;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+        }
+
+        .monetize-banner {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border: 1px solid #4338ca;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .monetize-banner h3 {
+            margin-top: 0;
+            color: #c7d2fe;
+        }
+
+        .monetize-btn {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .monetize-btn:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1 class="title" id="t-title">🚀 AI Prompt Enhancer</h1>
+        <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle">中文 / EN</button>
+    </div>
+
+    <div class="card">
+        <label for="task-type" id="t-label-task">1. Select AI Goal</label>
+        <select id="task-type">
+            <option value="writer">Content Creator & Copywriting</option>
+            <option value="coder">Code Helper & Bug Fixer</option>
+            <option value="image">Midjourney / AI Image Generator</option>
+            <option value="business">Business & Marketing Strategy</option>
+        </select>
+
+        <label for="user-idea" id="t-label-idea">2. Enter Simple Idea</label>
+        <input type="text" id="user-idea" placeholder="e.g. Write an email for sales promotion">
+
+        <label for="tone" id="t-label-tone">3. Select Tone / Style</label>
+        <select id="tone">
+            <option value="Professional & Persuasive">Professional & Persuasive</option>
+            <option value="Casual & Friendly">Casual & Friendly</option>
+            <option value="Detailed & Technical">Detailed & Technical</option>
+            <option value="Creative & Catchy">Creative & Catchy</option>
+        </select>
+
+        <button class="btn-main" onclick="generatePrompt()" id="t-btn-gen">Generate Super Prompt 🔥</button>
+    </div>
+
+    <div class="card">
+        <label id="t-label-result">Generated Result</label>
+        <div class="result-box" id="result-box">
+            <button class="copy-btn" onclick="copyPrompt()" id="t-btn-copy">Copy</button>
+            <span id="output-text">Your optimized prompt will appear here...</span>
+        </div>
+    </div>
+
+    <!-- 变现挂件：未来可以改成你的 Gumroad 链接卖 PDF -->
+    <div class="monetize-banner">
+        <h3 id="t-ad-title">💡 Want 100+ Ready-to-Use Digital Product Templates?</h3>
+        <p style="color: #a5b4fc; margin-bottom: 15px;" id="t-ad-desc">Get our Premium AI Passive Income Blueprint & Printable Trackers!</p>
+        <a href="https://gumroad.com" target="_blank" class="monetize-btn" id="t-ad-btn">Get Blueprint ($4.99)</a>
+    </div>
+</div>
+
+<script>
+    let currentLang = 'en';
+
+    const translations = {
+        en: {
+            title: "🚀 AI Prompt Enhancer",
+            labelTask: "1. Select AI Goal",
+            labelIdea: "2. Enter Simple Idea",
+            labelTone: "3. Select Tone / Style",
+            btnGen: "Generate Super Prompt 🔥",
+            labelResult: "Generated Result",
+            btnCopy: "Copy",
+            placeholder: "e.g. Write an email for sales promotion",
+            outputDefault: "Your optimized prompt will appear here...",
+            adTitle: "💡 Want 100+ Ready-to-Use Digital Product Templates?",
+            adDesc: "Get our Premium AI Passive Income Blueprint & Printable Trackers!",
+            adBtn: "Get Blueprint ($4.99)"
+        },
+        zh: {
+            title: "🚀 AI 提示词超级优化器",
+            labelTask: "1. 选择 AI 使用场景",
+            labelIdea: "2. 输入你的简单想法",
+            labelTone: "3. 选择语气 / 风格",
+            btnGen: "一键生成超级提示词 🔥",
+            labelResult: "优化完成的提示词",
+            btnCopy: "复制",
+            placeholder: "例如：帮我写一封促销邮件",
+            outputDefault: "优化后的专业提示词将显示在这里...",
+            adTitle: "💡 想要 100+ 现成的数字产品模板？",
+            adDesc: "获取我们的全套 AI 被动收入指南与可打印打卡表！",
+            adBtn: "立即获取手册 ($4.99)"
+        }
+    };
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        const t = translations[currentLang];
+        
+        document.getElementById('t-title').innerText = t.title;
+        document.getElementById('t-label-task').innerText = t.labelTask;
+        document.getElementById('t-label-idea').innerText = t.labelIdea;
+        document.getElementById('t-label-tone').innerText = t.labelTone;
+        document.getElementById('t-btn-gen').innerText = t.btnGen;
+        document.getElementById('t-label-result').innerText = t.labelResult;
+        document.getElementById('t-btn-copy').innerText = t.btnCopy;
+        document.getElementById('user-idea').placeholder = t.placeholder;
+        document.getElementById('t-ad-title').innerText = t.adTitle;
+        document.getElementById('t-ad-desc').innerText = t.adDesc;
+        document.getElementById('t-ad-btn').innerText = t.adBtn;
+        
+        if (document.getElementById('output-text').innerText === translations.en.outputDefault || document.getElementById('output-text').innerText === translations.zh.outputDefault) {
+            document.getElementById('output-text').innerText = t.outputDefault;
+        }
+    }
+
+    function generatePrompt() {
+        const task = document.getElementById('task-type').value;
+        const idea = document.getElementById('user-idea').value.trim();
+        const tone = document.getElementById('tone').value;
+
+        if (!idea) {
+            alert(currentLang === 'en' ? "Please enter an idea!" : "请先输入你的想法！");
+            return;
+        }
+
+        let enhanced = "";
+
+        if (task === 'writer') {
+            enhanced = `Act as an expert copywriter. I need you to create high-converting content about: "${idea}".\n\nRequirements:\n- Tone: ${tone}\n- Include a compelling headline and strong Call-to-Action (CTA).\n- Format with clear bullet points for readability.`;
+        } else if (task === 'coder') {
+            enhanced = `Act as a Senior Software Engineer. Help me build or fix the following concept: "${idea}".\n\nRequirements:\n- Write clean, modular, and well-commented code.\n- Provide step-by-step setup instructions.\n- Highlight potential bugs or edge cases.`;
+        } else if (task === 'image') {
+            enhanced = `A high-quality, ultra-detailed visual of "${idea}", rendered in 8k resolution, cinematic lighting, ${tone} aesthetic, photorealistic, trending on ArtStation --ar 16:9 --v 6.0`;
+        } else {
+            enhanced = `Act as a top-tier business strategist. Analyze and create an actionable strategy for: "${idea}".\n\nStructure:\n1. Executive Summary\n2. Key Execution Steps (Tone: ${tone})\n3. Monetization & Risk Control Checklist`;
+        }
+
+        document.getElementById('output-text').innerText = enhanced;
+    }
+
+    function copyPrompt() {
+        const text = document.getElementById('output-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert(currentLang === 'en' ? "Copied to clipboard!" : "已成功复制到剪贴板！");
+        });
+    }
+</script>
+
+</body>
+</html>我是长羊毛的猪，欢迎来到我的网站！

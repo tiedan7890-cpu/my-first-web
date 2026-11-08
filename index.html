@@ -212,11 +212,11 @@
         </div>
     </div>
 
-    <!-- 变现挂件：未来可以改成你的 Gumroad 链接卖 PDF -->
+    <!-- 变现挂件：已绑定 Gumroad 3D 图标包真实链接 -->
     <div class="monetize-banner">
-        <h3 id="t-ad-title">💡 Want 100+ Ready-to-Use Digital Product Templates?</h3>
-        <p style="color: #a5b4fc; margin-bottom: 15px;" id="t-ad-desc">Get our Premium AI Passive Income Blueprint & Printable Trackers!</p>
-        <a href="https://gumroad.com" target="_blank" class="monetize-btn" id="t-ad-btn">Get Blueprint ($4.99)</a>
+        <h3 id="t-ad-title">🚀 Need Premium 3D Tech Icons & Assets?</h3>
+        <p style="color: #a5b4fc; margin-bottom: 15px;" id="t-ad-desc">Minimalist 3D Icons Clip Art Bundle for Web Projects & AI Presentations.</p>
+        <a href="https://tiedan6.gumroad.com/l/ruaeaj" target="_blank" class="monetize-btn" id="t-ad-btn">Get 3D Assets Pack ($6.99+)</a>
     </div>
 </div>
 
@@ -234,9 +234,9 @@
             btnCopy: "Copy",
             placeholder: "e.g. Write an email for sales promotion",
             outputDefault: "Your optimized prompt will appear here...",
-            adTitle: "💡 Want 100+ Ready-to-Use Digital Product Templates?",
-            adDesc: "Get our Premium AI Passive Income Blueprint & Printable Trackers!",
-            adBtn: "Get Blueprint ($4.99)"
+            adTitle: "🚀 Need Premium 3D Tech Icons & Assets?",
+            adDesc: "Minimalist 3D Icons Clip Art Bundle for Web Projects & AI Presentations.",
+            adBtn: "Get 3D Assets Pack ($6.99+)"
         },
         zh: {
             title: "🚀 AI 提示词超级优化器",
@@ -248,9 +248,9 @@
             btnCopy: "复制",
             placeholder: "例如：帮我写一封促销邮件",
             outputDefault: "优化后的专业提示词将显示在这里...",
-            adTitle: "💡 想要 100+ 现成的数字产品模板？",
-            adDesc: "获取我们的全套 AI 被动收入指南与可打印打卡表！",
-            adBtn: "立即获取手册 ($4.99)"
+            adTitle: "🚀 需要高级 3D 科技图标与视觉素材？",
+            adDesc: "适用于网页项目与 AI 演示文稿的极简 3D 图标素材包！",
+            adBtn: "获取 3D 素材包 ($6.99+)"
         }
     };
 
@@ -276,37 +276,4 @@
     }
 
     function generatePrompt() {
-        const task = document.getElementById('task-type').value;
-        const idea = document.getElementById('user-idea').value.trim();
-        const tone = document.getElementById('tone').value;
-
-        if (!idea) {
-            alert(currentLang === 'en' ? "Please enter an idea!" : "请先输入你的想法！");
-            return;
-        }
-
-        let enhanced = "";
-
-        if (task === 'writer') {
-            enhanced = `Act as an expert copywriter. I need you to create high-converting content about: "${idea}".\n\nRequirements:\n- Tone: ${tone}\n- Include a compelling headline and strong Call-to-Action (CTA).\n- Format with clear bullet points for readability.`;
-        } else if (task === 'coder') {
-            enhanced = `Act as a Senior Software Engineer. Help me build or fix the following concept: "${idea}".\n\nRequirements:\n- Write clean, modular, and well-commented code.\n- Provide step-by-step setup instructions.\n- Highlight potential bugs or edge cases.`;
-        } else if (task === 'image') {
-            enhanced = `A high-quality, ultra-detailed visual of "${idea}", rendered in 8k resolution, cinematic lighting, ${tone} aesthetic, photorealistic, trending on ArtStation --ar 16:9 --v 6.0`;
-        } else {
-            enhanced = `Act as a top-tier business strategist. Analyze and create an actionable strategy for: "${idea}".\n\nStructure:\n1. Executive Summary\n2. Key Execution Steps (Tone: ${tone})\n3. Monetization & Risk Control Checklist`;
-        }
-
-        document.getElementById('output-text').innerText = enhanced;
-    }
-
-    function copyPrompt() {
-        const text = document.getElementById('output-text').innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            alert(currentLang === 'en' ? "Copied to clipboard!" : "已成功复制到剪贴板！");
-        });
-    }
-</script>
-
-</body>
-
+        const task

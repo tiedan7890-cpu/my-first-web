@@ -1,210 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Side Hustle Toolkit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Beggar - 全球网络大乞丐</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMLTZFDC1C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LMLTZFDC1C');
+    </script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
 
-<style>
+        .beggar-card {
+            width: 100%;
+            max-width: 500px;
+            background: var(--card-bg);
+            border: 2px dashed var(--accent);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15);
+            position: relative;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        .avatar {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
-body{
-font-family:Arial, sans-serif;
-background:#0f172a;
-color:white;
-line-height:1.6;
-}
+        h1 {
+            font-size: 2rem;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
 
-.hero{
-padding:100px 20px;
-text-align:center;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-}
+        /* 电子破碗区 */
+        .bowl-area {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .bowl-area:active { transform: scale(0.95); }
 
-.hero h1{
-font-size:60px;
-margin-bottom:20px;
-}
+        .bowl-icon { font-size: 3.5rem; margin-bottom: 8px; }
+        .bowl-tips { font-size: 0.85rem; color: #818cf8; }
+        .coins-counter {
+            font-size: 1.1rem;
+            color: #fbbf24;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-.hero p{
-font-size:22px;
-max-width:700px;
-margin:auto;
-}
+        /* 真正的打赏按钮 */
+        .donate-btn {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 16px 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+            transition: all 0.2s;
+        }
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(245, 158, 11, 0.6);
+        }
 
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:15px 35px;
-background:white;
-color:#111827;
-text-decoration:none;
-font-weight:bold;
-border-radius:50px;
-transition:.3s;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-.section{
-padding:80px 0;
-}
-
-.section-title{
-text-align:center;
-font-size:40px;
-margin-bottom:50px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.card{
-background:#1e293b;
-padding:25px;
-border-radius:15px;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.card h3{
-margin-bottom:15px;
-color:#60a5fa;
-}
-
-.stats{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:40px;
-}
-
-.stat{
-text-align:center;
-}
-
-.stat h2{
-font-size:48px;
-color:#60a5fa;
-}
-
-.lead{
-background:#111827;
-padding:80px 20px;
-text-align:center;
-}
-
-input{
-padding:15px;
-width:350px;
-max-width:90%;
-border:none;
-border-radius:8px;
-margin-top:15px;
-}
-
-button{
-padding:15px 25px;
-border:none;
-background:#2563eb;
-color:white;
-border-radius:8px;
-cursor:pointer;
-margin-top:15px;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-footer{
-padding:40px;
-text-align:center;
-background:#020617;
-margin-top:50px;
-}
-
-.small{
-opacity:.7;
-font-size:14px;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:40px;
-}
-
-.hero p{
-font-size:18px;
-}
-
-.section-title{
-font-size:30px;
-}
-
-}
-
-</style>
+        footer {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+    </style>
 </head>
-
 <body>
 
-<section class="hero">
+    <div class="beggar-card">
+        <div class="avatar">🥣</div>
+        <h1>Cyber Beggar</h1>
+        <p class="subtitle">
+            “我啥技术也不会，但我想讨几块钱花！”<br>
+            如果您今天心情好，不妨给赛博乞丐扔一枚硬币吧！
+        </p>
 
-<div class="container">
+        <!-- 互动敲破碗 -->
+        <div class="bowl-area" onclick="tossCoin()">
+            <div class="bowl-icon">🥣✨</div>
+            <div class="bowl-tips">点击上面的破碗：听一声清脆硬币响</div>
+            <div class="coins-counter">假装收到硬币: <span id="coin-count">0</span> 枚</div>
+        </div>
 
-<h1>AI Side Hustle Toolkit</h1>
+        <!-- 真正跳转 Gumroad 打赏 -->
+        <a href="https://tiedan7890.gumroad.com" target="_blank" class="donate-btn">
+            💰 真金白银赏 $1 美元 💰
+        </a>
+    </div>
 
-<p>
-Free resources, tools and strategies for creators,
-YouTubers and digital entrepreneurs.
-</p>
+    <footer>
+        <p>100% 坦诚 · 0% 忽悠 · 全网最真实网页</p>
+    </footer>
 
-<a href="#tools" class="btn">
-Start Exploring
-</a>
+    <script>
+        let coins = 0;
+        function tossCoin() {
+            coins++;
+            document.getElementById('coin-count').innerText = coins;
+            playCoinSound();
+        }
 
-</div>
-
-</section>
-
-<section class="section">
-
-<div class="container">
-
-<h2 class="section-title">
-🔥 Popular Resources
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>100 Shorts Ideas</h3>
-<p>
-Ready-to-use video topics for YouTube Shorts.
-</p>
-</div>
-
-<div class="card">
-<h3>Viral Hooks Pack<
+        // 清脆硬币音效
+        function playCoinSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.type = 'sine';
+                // 模拟硬币落地的高频清脆叮当声
+                osc.frequency.setValueAtTime(1800, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.08);
+                
+                gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+                
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                osc.start();
+                osc.stop(ctx.currentTime + 0.15);
+            } catch(e) {}
+        }
+    </script>
+</body>
+</html>

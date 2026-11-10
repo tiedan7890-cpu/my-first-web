@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Beggar - 全球网络大乞丐</title>
+    <title>Cyber Beggar - Official International Relations</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMLTZFDC1C"></script>
     <script>
@@ -14,13 +14,12 @@
     </script>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --border: #334155;
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --text-main: #f3f4f6;
+            --text-sub: #9ca3af;
+            --accent: #eab308;
+            --border: #1f2937;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
         body {
@@ -35,143 +34,87 @@
             padding: 20px;
             text-align: center;
         }
-
-        .beggar-card {
+        .card {
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
             background: var(--card-bg);
-            border: 2px dashed var(--accent);
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15);
-            position: relative;
-        }
-
-        .avatar {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 2rem;
-            color: #fbbf24;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        /* 电子破碗区 */
-        .bowl-area {
-            background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 40px 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .flag { font-size: 3rem; margin-bottom: 15px; }
+        h1 { font-size: 1.8rem; color: #facc15; margin-bottom: 10px; }
+        .desc { color: var(--text-sub); font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; }
+        
+        .interactive-box {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+            padding: 20px;
             margin-bottom: 25px;
             cursor: pointer;
             transition: transform 0.1s;
         }
-        .bowl-area:active { transform: scale(0.95); }
+        .interactive-box:active { transform: scale(0.97); }
+        .coin-num { color: #facc15; font-weight: bold; font-size: 1.2rem; margin-top: 5px; }
 
-        .bowl-icon { font-size: 3.5rem; margin-bottom: 8px; }
-        .bowl-tips { font-size: 0.85rem; color: #818cf8; }
-        .coins-counter {
-            font-size: 1.1rem;
-            color: #fbbf24;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* 真正的打赏按钮 */
-        .donate-btn {
-            display: inline-block;
+        .btn {
+            display: block;
             width: 100%;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            font-size: 1.2rem;
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+            color: #000;
+            font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
             padding: 16px 0;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
-            transition: all 0.2s;
+            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.3);
+            transition: transform 0.2s;
         }
-        .donate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(245, 158, 11, 0.6);
-        }
-
-        footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-        }
+        .btn:hover { transform: translateY(-2px); }
+        footer { margin-top: 20px; font-size: 0.75rem; color: var(--text-sub); }
     </style>
 </head>
 <body>
-
-    <div class="beggar-card">
-        <div class="avatar">🥣</div>
-        <h1>Cyber Beggar</h1>
-        <p class="subtitle">
-            “我啥技术也不会，但我想讨几块钱花！”<br>
-            如果您今天心情好，不妨给赛博乞丐扔一枚硬币吧！
+    <div class="card">
+        <div class="flag">🇨🇳 🤝 🌍</div>
+        <h1>International Cyber Begging</h1>
+        <p class="desc">
+            "I have zero technical skills, but I possess immense diplomatic aspirations."<br>
+            Please kindly donate $1 to sponsor my daily coffee and officially upgrade international relations.
         </p>
 
-        <!-- 互动敲破碗 -->
-        <div class="bowl-area" onclick="tossCoin()">
-            <div class="bowl-icon">🥣✨</div>
-            <div class="bowl-tips">点击上面的破碗：听一声清脆硬币响</div>
-            <div class="coins-counter">假装收到硬币: <span id="coin-count">0</span> 枚</div>
+        <div class="interactive-box" onclick="clickBowl()">
+            <div style="font-size: 2rem;">🪙🪙</div>
+            <div style="font-size: 0.85rem; color: #818cf8; margin-top: 5px;">Click to drop a virtual coin</div>
+            <div class="coin-num"><span id="count">0</span> Honorary Coins Received</div>
         </div>
 
-        <!-- 真正跳转 Gumroad 打赏 -->
-        <a href="https://tiedan7890.gumroad.com" target="_blank" class="donate-btn">
-            💰 真金白银赏 $1 美元 💰
+        <a href="https://tiedan6.gumroad.com/l/ankfzu" target="_blank" class="btn">
+            Send $1 & Represent Global Peace
         </a>
     </div>
-
     <footer>
-        <p>100% 坦诚 · 0% 忽悠 · 全网最真实网页</p>
+        <p>100% Transparent · Zero Scams · Guaranteed Digital Satisfaction</p>
     </footer>
 
     <script>
-        let coins = 0;
-        function tossCoin() {
-            coins++;
-            document.getElementById('coin-count').innerText = coins;
-            playCoinSound();
-        }
-
-        // 清脆硬币音效
-        function playCoinSound() {
+        let c = 0;
+        function clickBowl() {
+            c++;
+            document.getElementById('count').innerText = c;
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
                 const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                
+                const g = ctx.createGain();
                 osc.type = 'sine';
-                // 模拟硬币落地的高频清脆叮当声
-                osc.frequency.setValueAtTime(1800, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.08);
-                
-                gain.gain.setValueAtTime(0.5, ctx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.15);
-                
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                
-                osc.start();
-                osc.stop(ctx.currentTime + 0.15);
+                osc.frequency.setValueAtTime(1500, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(2500, ctx.currentTime + 0.08);
+                g.gain.setValueAtTime(0.4, ctx.currentTime);
+                g.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+                osc.connect(g); g.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.12);
             } catch(e) {}
         }
     </script>

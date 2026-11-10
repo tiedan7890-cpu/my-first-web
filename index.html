@@ -1,423 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZenSpace Ultra - 纯粹无脑解压发呆空间</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LMLTZFDC1C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LMLTZFDC1C');
-    </script>
-    <style>
-        :root {
-            --bg-color: #07090e;
-            --card-bg: #111827;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #6366f1;
-            --border: #1f2937;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            overflow: hidden;
-            padding: 15px;
-        }
-        
-        /* 顶部控制栏 */
-        .top-bar {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-        h1 { font-size: 1.4rem; color: #818cf8; }
-        
-        .controls-right {
-            display: flex;
-            gap: 10px;
-        }
-        .action-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 6px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-        .action-btn:hover { border-color: var(--accent); background: #1e293b; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Side Hustle Toolkit</title>
 
-        /* 模式切换选项卡 */
-        .tabs {
-            display: flex;
-            gap: 6px;
-            background: var(--card-bg);
-            padding: 4px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-sub);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--accent);
-            color: white;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* 主互动大画布/容器区 */
-        .canvas-container {
-            width: 100%;
-            max-width: 900px;
-            flex: 1;
-            margin: 10px 0;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+body{
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:#fff;
+    line-height:1.6;
+}
 
-        .mode-box { display: none; width: 100%; height: 100%; position: absolute; top:0; left:0; }
-        .mode-box.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
 
-        /* 气泡流面板 */
-        #bubble-board {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            cursor: crosshair;
-        }
-        .bubble-item {
-            position: absolute;
-            width: 45px;
-            height: 45px;
-            background: radial-gradient(circle at 30% 30%, #a5b4fc, #4f46e5);
-            border-radius: 50%;
-            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.5), 0 0 12px rgba(99,102,241,0.4);
-            transition: transform 0.08s, opacity 0.08s;
-            pointer-events: none;
-        }
+.hero{
+    text-align:center;
+    padding:100px 20px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
 
-        /* 木鱼沉浸区 */
-        #muyu-board {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .muyu-circle {
-            width: 160px;
-            height: 160px;
-            background: radial-gradient(circle at 35% 35%, #f59e0b, #b45309);
-            border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(180, 83, 9, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: #fef3c7;
-            font-weight: bold;
-            transition: transform 0.05s;
-        }
-        .muyu-circle:active { transform: scale(0.9); }
-        .merit-counter { margin-top: 20px; font-size: 1.2rem; color: #fbbf24; }
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
 
-        /* 流体星空全屏画板 */
-        #sky-canvas {
-            width: 100%;
-            height: 100%;
-            cursor: crosshair;
-        }
+.hero p{
+    font-size:22px;
+    max-width:700px;
+    margin:auto;
+}
 
-        /* 底部轻量提示 */
-        footer {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
-            color: var(--text-sub);
-        }
-        .support-link {
-            color: #818cf8;
-            text-decoration: none;
-            border: 1px dashed #818cf8;
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
+.cta-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:18px 40px;
+    background:#fff;
+    color:#111;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:bold;
+}
 
-    <div class="top-bar">
-        <h1>ZenSpace Ultra ⚡ 极简无脑发呆</h1>
-        <div class="controls-right">
-            <button class="action-btn" onclick="toggleFullScreen()">⛶ 全屏沉浸</button>
-        </div>
-    </div>
+.section{
+    padding:80px 0;
+}
 
-    <div class="canvas-container">
-        <!-- 顶部悬浮切换标签 -->
-        <div style="position: absolute; top: 12px; z-index: 20;" class="tabs">
-            <button class="tab-btn active" onclick="switchMode('bubble')">🫧 划过爆气泡</button>
-            <button class="tab-btn" onclick="switchMode('muyu')">🐟 任意点木鱼</button>
-            <button class="tab-btn" onclick="switchMode('sky')">✨ 流光星海</button>
-        </div>
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:40px;
+}
 
-        <!-- 模式一：划过自动爆气泡 -->
-        <div id="box-bubble" class="mode-box active">
-            <div id="bubble-board" onmousemove="handleBubbleMove(event)" ontouchmove="handleBubbleTouch(event)"></div>
-        </div>
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
 
-        <!-- 模式二：全屏任意点敲木鱼 -->
-        <div id="box-muyu" class="mode-box" onclick="hitMuyuBig()">
-            <div id="muyu-board">
-                <div class="muyu-circle" id="muyu-ui">狂点敲木鱼</div>
-                <div class="merit-counter">已积攒功德: <span id="merit-num">0</span></div>
-            </div>
-        </div>
+.card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+    transition:0.3s;
+}
 
-        <!-- 模式三：流光星海画布 -->
-        <div id="box-sky" class="mode-box">
-            <canvas id="sky-canvas"></canvas>
-        </div>
-    </div>
+.card:hover{
+    transform:translateY(-5px);
+}
 
-    <footer>
-        <span>滑动鼠标或手指即可无脑解压</span>
-        <a href="https://tiedan7890.gumroad.com" target="_blank" class="support-link">☕ 咖啡支持</a>
-    </footer>
+.card h3{
+    margin-bottom:15px;
+}
 
-    <script>
-        // 音频上下文（大音效放大版）
-        let audioCtx = null;
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            return audioCtx;
-        }
+.card a{
+    color:#60a5fa;
+    text-decoration:none;
+}
 
-        // 全屏切换
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {});
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
+.stats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
 
-        // 模式切换
-        function switchMode(mode) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.mode-box').forEach(m => m.classList.remove('active'));
-            
-            if(mode === 'bubble') {
-                document.querySelector('[onclick="switchMode(\'bubble\')"]').classList.add('active');
-                document.getElementById('box-bubble').classList.add('active');
-                initBubbleField();
-            } else if(mode === 'muyu') {
-                document.querySelector('[onclick="switchMode(\'muyu\')"]').classList.add('active');
-                document.getElementById('box-muyu').classList.add('active');
-            } else if(mode === 'sky') {
-                document.querySelector('[onclick="switchMode(\'sky\')"]').classList.add('active');
-                document.getElementById('box-sky').classList.add('active');
-                resizeSky();
-            }
-        }
+.stat{
+    text-align:center;
+}
 
-        // --- 模式一：无脑划过爆气泡逻辑 ---
-        const bubbleBoard = document.getElementById('bubble-board');
-        let bubbleElements = [];
-
-        function initBubbleField() {
-            bubbleBoard.innerHTML = '';
-            bubbleElements = [];
-            const cols = 12, rows = 8;
-            const w = bubbleBoard.clientWidth || 800;
-            const h = bubbleBoard.clientHeight || 400;
-            
-            for(let x = 30; x < w - 30; x += 65) {
-                for(let y = 30; y < h - 30; y += 65) {
-                    const el = document.createElement('div');
-                    el.className = 'bubble-item';
-                    el.style.left = (x + (Math.random()*10 - 5)) + 'px';
-                    el.style.top = (y + (Math.random()*10 - 5)) + 'px';
-                    bubbleBoard.appendChild(el);
-                    bubbleElements.push({ el, x, y, popped: false });
-                }
-            }
-        }
-
-        function checkPop(clientX, clientY) {
-            const rect = bubbleBoard.getBoundingClientRect();
-            const px = clientX - rect.left;
-            const py = clientY - rect.top;
-
-            bubbleElements.forEach(item => {
-                if(!item.popped) {
-                    const dist = Math.hypot(item.x - px, item.y - py);
-                    if(dist < 40) {
-                        item.popped = true;
-                        item.el.style.transform = 'scale(0)';
-                        item.el.style.opacity = '0';
-                        playBigPopSound();
-                        // 3秒后自动复活
-                        setTimeout(() => {
-                            item.popped = false;
-                            item.el.style.transform = 'scale(1)';
-                            item.el.style.opacity = '1';
-                        }, 3000);
-                    }
-                }
-            });
-        }
-
-        function handleBubbleMove(e) { checkPop(e.clientX, e.clientY); }
-        function handleBubbleTouch(e) { 
-            if(e.touches.length > 0) checkPop(e.touches[0].clientX, e.touches[0].clientY); 
-        }
-
-        function playBigPopSound() {
-            try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(550, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.4, ctx.currentTime); // 大音量
-                gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.1);
-            } catch(e) {}
-        }
-
-        // --- 模式二：任意点木鱼逻辑 ---
-        let meritCount = 0;
-        function hitMuyuBig() {
-            meritCount++;
-            document.getElementById('merit-num').innerText = meritCount;
-            
-            const circle = document.getElementById('muyu-ui');
-            circle.style.transform = 'scale(0.88)';
-            setTimeout(() => circle.style.transform = 'scale(1)', 60);
-
-            try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(360, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + 0.18);
-                gain.gain.setValueAtTime(0.6, ctx.currentTime); // 放大音量
-                gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.18);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.18);
-            } catch(e) {}
-        }
-
-        // --- 模式三：流光星海画布逻辑 ---
-        const skyCanvas = document.getElementById('sky-canvas');
-        const sCtx = skyCanvas.getContext('2d');
-        let skyParticles = [];
-
-        function resizeSky() {
-            skyCanvas.width = skyCanvas.parentElement.clientWidth;
-            skyCanvas.height = skyCanvas.parentElement.clientHeight;
-        }
-        window.onresize = () => { resizeSky(); };
-
-        skyCanvas.onmousemove = (e) => {
-            const rect = skyCanvas.getBoundingClientRect();
-            addSkyParticle(e.clientX - rect.left, e.clientY - rect.top);
-        };
-        skyCanvas.ontouchmove = (e) => {
-            if(e.touches.length > 0) {
-                const rect = skyCanvas.getBoundingClientRect();
-                addSkyParticle(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
-            }
-        };
-
-        function addSkyParticle(x, y) {
-            for(let i=0; i<2; i++) {
-                skyParticles.push({
-                    x: x + (Math.random() * 20 - 10),
-                    y: y + (Math.random() * 20 - 10),
-                    vx: (Math.random() - 0.5) * 3,
-                    vy: (Math.random() - 0.5) * 3,
-                    radius: Math.random() * 6 + 2,
-                    color: `hsl(${Math.random() * 60 + 200}, 90%, 70%)`,
-                    alpha: 1
-                });
-            }
-        }
-
-        function animateSky() {
-            sCtx.fillStyle = 'rgba(17, 24, 39, 0.2)'; // 拖尾残影效果
-            sCtx.fillRect(0, 0, skyCanvas.width, skyCanvas.height);
-
-            skyParticles.forEach((p, idx) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.alpha -= 0.02;
-                if(p.alpha <= 0) {
-                    skyParticles.splice(idx, 1);
-                    return;
-                }
-                sCtx.beginPath();
-                sCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                sCtx.fillStyle = p.color;
-                sCtx.globalAlpha = p.alpha;
-                sCtx.fill();
-                sCtx.globalAlpha = 1;
-            });
-            requestAnimationFrame(animateSky);
-        }
-        animateSky();
-
-        // 默认初始化气泡
-        setTimeout(initBubbleField, 100);
-    </script>
-</body>
-</html>
